@@ -29,11 +29,20 @@ driver.get("https://www.baidu.com")
 # driver.find_element(By.NAME, "wd")  # 根据name搜索元素
 # driver.find_element(By.CLASS_NAME, "s_ipt")  #根据类名搜索元素
 # driver.find_element(By.TAG_NAME, "input")    #根据tag搜索元素
-driver.find_element(By.LINK_TEXT, "新闻").click()     #根据链接寻找     #点击“新闻”选项
-# driver.find_element(By.XPATH, '/html/body/div[2]/div[1]/div[5]/div/div/form/span[1]/input')     #XPATH
+#driver.find_element(By.LINK_TEXT, "新闻").click()  # 根据链接寻找     点击“新闻”选项
+
 sleep(3)
-driver.forward()
-
-
+#driver.forward()
+driver.find_element(By.XPATH, '//*[@id="kw"]').send_keys("华南理工大学")  # XPATH       输入“内容”
+sleep(1)
+#driver.find_element(By.XPATH, '//*[@id="kw"]').clear()          #清除内容
+element = driver.find_element(By.ID, "kw")
+print("搜索框里的内容是：", element.get_attribute("value"))
+print('搜索框的class属性：',element.get_attribute('class'))
+print('搜索框的type属性：',element.get_attribute('type'))
+print('搜索框的坐标位置：',element.location)
+print('搜索框是否可操作：',element.is_displayed())
+sleep(3)
+driver.find_element(By.XPATH, '//*[@id="kw"]').submit()     #提交表单
+sleep(1)
 driver.quit()  # 关闭整个浏览器
-
